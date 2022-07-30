@@ -1,0 +1,67 @@
+﻿<Window x:Class="SerialWave.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SerialWave"
+        mc:Ignorable="d"
+        Title="Serial Port Data Visualization" Height="486" Width="762">
+    <Window.Effect>
+        <DropShadowEffect/>
+    </Window.Effect>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0" Height="32">
+            <MenuItem Header="Serial" Height="32">
+                <MenuItem Header="Setting" Click="SerialSetting_Click"/>
+                <MenuItem Header="Open" Click="SerialOpen_Click"/>
+                <MenuItem Header="Close" Click="SerialClose_Click"/>
+            </MenuItem>
+            <MenuItem Header="Data">
+                <CheckBox Content="Hex Format" Click="CheckBox_ReadHex_Click" IsChecked="True"/>
+                <CheckBox Content="Struct Format" Click="CheckBox_Struct_Click" IsChecked="False"/>
+            </MenuItem>
+            <MenuItem Header="Wave">
+                <MenuItem Header="Background Color">
+                    <MenuItem Header="Black" Click="MenuItem_Black_Click"/>
+                    <MenuItem Header="White" Click="MenuItem_White_Click"/>
+                    <MenuItem Header="Gray" Click="MenuItem_Gray_Click"/>
+                </MenuItem>
+                <MenuItem Header="Structure" Click="Sturct_Config_Click"/>
+                <CheckBox Content="Little-end" Click="CheckBox_LittleEND_Click" IsChecked="true"/>
+                <CheckBox Content="Enable Decoding" Click="CheckBox_Decode_Click" IsChecked="False"/>
+            </MenuItem>
+        </Menu>
+        <TabControl Grid.Row="1" TabStripPlacement="Bottom" SelectedIndex="0" Name="wave_tab">
+            <TabItem Header="Data" Height="24" Width="64">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="200*"></RowDefinition>
+                        <RowDefinition Height="5"></RowDefinition>
+                        <RowDefinition Height="100*"></RowDefinition>
+                        <RowDefinition Height="24"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBox Grid.Row="0" Name="textbox_data_recv" IsReadOnly="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible"/>
+                    <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch"/>
+                    <TextBox Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="textbox_data_send" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" AcceptsReturn="True"/>
+                    <StackPanel Grid.Row="3" Orientation="Horizontal" DockPanel.Dock="Bottom" Height="24" FlowDirection="RightToLeft">
+                        <Button Content="Send" Width="64" Height="24" Click="Button_Send_Click"></Button>
+                        <Button Content="Keep Sending" Padding="10,0,10,0" Height="24" Margin="20,0,0,0" Click="Button_KeepSend_Click" Tag="0"></Button>
+                        <TextBox Width="48" Text="500" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="send_interval"/>
+                        <CheckBox Content="Hex Format" Name="checkbox_hex_send" VerticalContentAlignment="Center" FlowDirection="LeftToRight" Margin="15,0,0,0" IsChecked="True"/>
+                        <TextBox IsEnabled="False" Text="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Name="textbox_sent_count" Margin="15,0,0,0"/>
+                        <Label Content="Sent" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseLeftButtonUp="Label_Sent_MouseLeftButtonUp"/>
+                        <TextBox IsEnabled="False" Text="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Name="textbox_recv_count" Margin="15,0,0,0"/>
+                        <Label Content="Recv" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseLeftButtonUp="Label_Recv_MouseLeftButtonUp"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Wave" Height="24" Width="64">
+                <local:Coordinate/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

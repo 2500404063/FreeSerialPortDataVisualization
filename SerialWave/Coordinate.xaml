@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="SerialWave.Coordinate"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SerialWave"
+             mc:Ignorable="d" d:Height="332" d:Width="641">
+    <Grid Background="Black" x:Name="background">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="24"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="64"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <local:YAxis Grid.Row="0" Grid.Column="0" x:Name="yaxis"/>
+        <local:XAxis Grid.Row="1" Grid.Column="1" x:Name="xaxis"/>
+        <ScrollViewer Grid.Row="0" Grid.Column="1" x:Name="viewer" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" PreviewKeyDown="ScrollViewer_PreviewKeyDown" PreviewKeyUp="ScrollViewer_PreviewKeyUp">
+            <local:DrawPanel x:Name="paper" HorizontalAlignment="Left"/>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

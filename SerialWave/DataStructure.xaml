@@ -1,0 +1,17 @@
+﻿<Window x:Class="SerialWave.DataStructure"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SerialWave"
+        mc:Ignorable="d"
+        Title="DataStructure" Height="233" Width="489">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="24"/>
+        </Grid.RowDefinitions>
+        <TextBox Grid.Row="0" AcceptsReturn="True" Name="textbox_structure" Text="int function1 black&#xD;&#xA;int function2 blue&#xD;&#xA;&#xA;float function3 red&#xA;float function4 yollow" FontSize="16" />
+        <Button Grid.Row="1" Content="OK" Click="Button_Click"/>
+    </Grid>
+</Window>
